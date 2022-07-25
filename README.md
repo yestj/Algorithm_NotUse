@@ -2,7 +2,7 @@
 Storage of solutions to algorithm problems.
 
 ### Commit message rule
-`[Source of problem/Level/Problem Number]: Current status`
+`[Problem source/Level/Problem Number]: Current status`
 
 ### Problem source
 [swea (SW Expert Academy)](https://swexpertacademy.com/)  
