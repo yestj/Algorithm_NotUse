@@ -1,2 +1,2 @@
 # algorithm
-Solutions to algorithm problems
+Storage of solutions to algorithm problems.
