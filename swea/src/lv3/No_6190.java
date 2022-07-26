@@ -21,7 +21,7 @@ public class No_6190 {
 			for (int i = 0; i < numArr.length; i++) {
 				numArr[i] = sc.nextInt();
 			}
-			// 배열의 각 값들을 곱하여 배열에 저
+			// 배열의 각 값들을 곱하여 배열에 저장 
 			ArrayList<String> multipliedArr = new ArrayList<String>();
 			for(int i = 0; i < numArr.length; i++) {
 				for(int j = i + 1; j < numArr.length; j++) {
@@ -34,7 +34,6 @@ public class No_6190 {
 			
 			// multipliedArr 배열안의 각 String 숫자에 대해 단조 증가하는지 확인
 			for (String num : multipliedArr) {
-				// 각 숫자를 돌며 이 
 				int temp = 0;
 				test: 
 				for (int i = 0; i < num.length(); i++) {
