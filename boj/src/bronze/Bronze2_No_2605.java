@@ -1,4 +1,4 @@
-package lv1;
+package bronze;
 
 import java.util.ArrayList;
 import java.util.List;
