@@ -1,4 +1,4 @@
-# algorithm
+# Algorithm
 Storage of solutions to algorithm problems.
 
 ### Commit message rule
