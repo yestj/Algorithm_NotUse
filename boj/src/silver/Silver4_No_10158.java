@@ -19,11 +19,12 @@ public class Silver4_No_10158 {
 		x = (x+t) % (2*w);
 		y = (y+t) % (2*h);
 		
+		// Math.abs 하지 않으면 시간 초과 발생..! 
 		if(x > w) {
-			x = 2*w - x;
+			x = Math.abs(2*w - x);
 		}
 		if(y > h) {
-			y = 2*h - y;
+			y = Math.abs(2*h - y);
 		}
 		
 		System.out.println(x + " " + y);
