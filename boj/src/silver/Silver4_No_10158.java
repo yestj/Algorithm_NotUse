@@ -13,22 +13,17 @@ public class Silver4_No_10158 {
 		
 		int x = sc.nextInt();
 		int y = sc.nextInt();
-		
-		int[] dx = {1, -1};
-		int[] dy = {1, -1};
-		int idxX = 0;
-		int idxY = 0;
-		
+
 		int t = sc.nextInt();
-		for(int i = 0; i < t; i++) {
-			x += dx[idxX];
-			y += dx[idxY];
-			if(x == 0 || x == w) {
-				idxX = 1- idxX;
-			}
-			if(y == 0 || y == h) {
-				idxY = 1-idxY;
-			}
+		
+		x = (x+t) % (2*w);
+		y = (y+t) % (2*h);
+		
+		if(x > w) {
+			x = 2*w - x;
+		}
+		if(y > h) {
+			y = 2*h - y;
 		}
 		
 		System.out.println(x + " " + y);
