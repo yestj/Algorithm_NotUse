@@ -1,4 +1,4 @@
-package lv3;
+package d3;
 
 import java.util.Arrays;
 import java.util.Scanner;
