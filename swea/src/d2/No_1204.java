@@ -1,4 +1,4 @@
-package lv2;
+package d2;
 
 import java.util.Scanner;
 
