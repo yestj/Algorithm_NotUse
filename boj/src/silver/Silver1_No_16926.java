@@ -4,66 +4,71 @@ import java.util.Scanner;
 
 public class Silver1_No_16926 {
 
-	// 하, 우, 상, 좌
-	static int[] dr = { 1, 0, -1, 0 };
-	static int[] dc = { 0, 1, 0, -1 };
-
-	static int[][] arr;
-	static int arrIdx = 0;
-	static int N;
-	static int M;
-	static int R;
-	
-	static int[][] result;
-	static int resIdx = 0;
-	
-	static int resRow = 0;
-	static int resCol = 0;
-	
 	public static void main(String[] args) {
-		
+
 		Scanner sc = new Scanner(System.in);
 
-		N = sc.nextInt();
-		M = sc.nextInt();
-		R = sc.nextInt();
+		// 회전 방향의 반대로 가면서 값을 바꿔 줄 예정으로,
+		// 반대 방향인 우 -> 하 -> 좌 -> 상 순으로 이동.
+		int[] dr = { 0, 1, 0, -1 };
+		int[] dc = { 1, 0, -1, 0 };
+		int dIdx = 0;
 
-		// 입력 값 저장할 배열.
-		arr = new int[N][M];
+		int N = sc.nextInt();
+		int M = sc.nextInt();
+		int R = sc.nextInt();
+		int[][] arr = new int[N][M];
 
+		// 배열의 값 입력 받기.
 		for (int r = 0; r < N; r++) {
 			for (int c = 0; c < M; c++) {
-				arr[N][M] = sc.nextInt();
+				arr[r][c] = sc.nextInt();
 			}
 		}
 
-		// 결과값 저장할 배열.
-		result = new int[N][M];
+		// 1 그룹 : 가장 바깥의 테두리 ... 2그룹: 1그룹을 제외 했을 때 가장 바깥의 테두리 그룹
+		// 그룹의 수 구하기.
+		int group = Math.min(N, M) / 2;
 
-		// 시작점(0,0)을 기준으로 이동한 최종 위치를 Result배열에 입력.
-		// min(N,M) mode 2 = 0 이므로, 시작점은 min(N,M)/2 번 설정할 수 있음.
-		int cycle = Math.min(N, M) / 2;
-
-		for (int i = 0; i < cycle; i++) {
-			rotate(i, i);
-			result[resRow][resCol] = arr[i][i];
-			i += 
-		}
-
-	}
-	
-	static void rotate(int startRow, int startCol) {
-		for(int i = 1; i <= R; i++) {
-			int row = startRow + dr[arrIdx];
-			int col = startCol + dc[arrIdx];
-			if(row < 0 || row >= N || col < 0 || col >= M) {
-				row -= dr[arrIdx];
-				col -= dc[arrIdx];
-				arrIdx = (arrIdx+1)%4;
+		// 몇 번 회전 할 지.
+		for (int i = 0; i < R; i++) {
+			// 그룹별로 각각 회전시킴. (한 칸씩 이동하는 버전)
+			for (int j = 0; j < group; j++) {
+				// 그룹별로 [0,0] [1,1].. 이 시작점이 됨.
+				// 맨 처음 값은 사라지므로 임시로 저장해놨다가 마지막에 추가해주기.
+				int temp = arr[j][j];
+				int row = j;
+				int col = j;
+				int nextRow = row;
+				int nextCol = col;
+				// 초기화 안하면 오류.
+				dIdx = 0;
+				// dIdx 가 4 이상이 되면 한 바퀴를 다 돈 상태이므로, dIdx가 4이하일 때까지만 반복.
+				while (dIdx < 4) {
+					nextRow = row + dr[dIdx];
+					nextCol = col + dc[dIdx];
+					if (nextRow < j || nextRow >= N - j || nextCol < j || nextCol >= M - j) {
+						dIdx++;
+					} else {
+						arr[row][col] = arr[nextRow][nextCol];
+						row = nextRow;
+						col = nextCol;
+					}
+				}
+				arr[j + 1][j] = temp;
 			}
-			resRow = row;
-			resCol = col;
 		}
+
+		StringBuilder result = new StringBuilder();
+		for (int r = 0; r < N; r++) {
+			for (int c = 0; c < M; c++) {
+				result.append(arr[r][c]).append(" ");
+			}
+			result.deleteCharAt(result.length() - 1);
+			result.append("\n");
+		}
+		result.deleteCharAt(result.length() - 1);
+		System.out.println(result.toString());
+
 	}
-	
 }
